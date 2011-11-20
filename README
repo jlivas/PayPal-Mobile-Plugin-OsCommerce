@@ -1,0 +1,12 @@
+====PayPal Mobile Plugin Installation Instructions====
+
+1. If you haven't already been through and granted 'OnTechnology' access to set these permissions, you will need to login to your PayPal account and set the correct permissions
+    - BMCreateButton
+    - ....
+    - ....
+
+2. Unpack the contents of the plugin into your public directory. mobile.php will be in the base of your public directory, while the 'mobile' folder will be subfolder within that.
+
+3. Merge mobile.htaccess file with your existing .htaccess file (if you already have one). This contains the mobile user agent string detection.
+
+4. Check the site on your phone and test the transaction flow.
