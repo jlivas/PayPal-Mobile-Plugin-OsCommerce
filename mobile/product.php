@@ -8,7 +8,7 @@
 <h2>
 	<?php
 		$theproductname = $product_info['products_name']; 
-		for ($i=0;$i<sizeof($breadcrumb->_trail);$i++) { ?>
+		for ($i=1;$i<((sizeof($breadcrumb->_trail))-1);$i++) { ?>
 	<?php 
 		$str = end(explode('_', $breadcrumb->_trail[$i]['link']));	
 		$catid = preg_replace('[\D]', '', $str);

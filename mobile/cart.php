@@ -4,36 +4,15 @@
 
 <?php 
 	echo tep_draw_form('cart_quantity', tep_href_link(FILENAME_SHOPPING_CART, 'action=update_product'));
+	
+	if ($_SESSION['cart']->count_contents() == 0) {
+	
+	echo '<p>Your cart is empty</p>';
+	
+	} else {
 ?>
 
-<style type="text/css">
-table {
-	background:#fff;
-	border-radius:10px;
-	border-collapse:collapse;
-}
-table th {
-	text-align:left;
-	background:#eee;
-	padding:4px;
-}
-
-.update input,
-.update span,
-.update div,
-.tdbLink {
-	display:none;
-}
-table td {
-	padding:4px;
-	vertical-align:middle !important;
-}
-table td input[type="text"] {
-	width:28px;
-}
-</style>
-
-<table>
+<table id="cart">
 <tr>
 	<th>Qty</th>
 	<th> </th>
@@ -41,11 +20,12 @@ table td input[type="text"] {
 	<th>Price</th>
 	<th>Delete </th>
 </tr>
+
 <?php
-	$products = $cart->get_products();
 	
     $any_out_of_stock = 0;
     $products = $cart->get_products();
+	
     for ($i=0, $n=sizeof($products); $i<$n; $i++) {
 	// Push all attributes information in an array
       if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
@@ -58,28 +38,23 @@ table td input[type="text"] {
                                        and pa.options_id = popt.products_options_id
                                        and pa.options_values_id = '" . (int)$value . "'
                                        and pa.options_values_id = poval.products_options_values_id
-                                       and popt.language_id = '" . (int)$languages_id . "'
-                                       and poval.language_id = '" . (int)$languages_id . "'");
+                                       and popt.language_id = '" . 1 . "'
+                                       and poval.language_id = '" . 1 . "'");
           $attributes_values = tep_db_fetch_array($attributes);
-
+		  		  
           $products[$i][$option]['products_options_name'] = $attributes_values['products_options_name'];
           $products[$i][$option]['options_values_id'] = $value;
           $products[$i][$option]['products_options_values_name'] = $attributes_values['products_options_values_name'];
           $products[$i][$option]['options_values_price'] = $attributes_values['options_values_price'];
-          $products[$i][$option]['price_prefix'] = $attributes_values['price_prefix'];
+          $products[$i][$option]['price_prefix'] = $attributes_values['price_prefix'];		  
         }
       }
     }
-
-	$k = 0;
-	while ($k<sizeOf($products)) {
-	echo $attributes_values[$k]['products_options_name'];
-	$k ++;
-	}
 	
 	$i=0;
 	while ($i<sizeOf($products)) {
 ?>
+
 <tbody style="border-bottom:2px solid #ccc;">
 <tr>
 	<td>
@@ -98,17 +73,23 @@ table td input[type="text"] {
 	</td>
 	<td><?php echo $products[$i]['name']; ?> </td>
 	<td>$<?php echo number_format($products[$i]['final_price'] * $products[$i]['quantity'], 2); ?> </td>
-	<td>
+	<td style="text-align:center;">
 	<?php
 	echo '<a rel="external" href="' . tep_href_link(FILENAME_SHOPPING_CART, 'products_id=' . $products[$i]['id'] . '&action=remove_product') . '"><img src="mobile/images/delete.png" /></a>';
 	?>
 	</td>
 </tr>
 <tr>
+	<td> &nbsp; </td>
 	<td colspan="4">
-	  <?php 
-		echo $products[$i][$option]['products_options_name'] . ' ' . $products[$i][$option]['products_options_values_name'] . '</i></small>';
-      ?>
+	 <?php 
+		if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
+		    reset($products[$i]['attributes']);
+			while (list($option, $value) = each($products[$i]['attributes'])) {
+			  echo '<small><i> - ' . $products[$i][$option]['products_options_name'] . ' ' . $products[$i][$option]['products_options_values_name'] . '</i></small><br/>';
+			}
+		}
+	 ?>
 	</td>
 </tr>
 </tbody>
@@ -121,7 +102,7 @@ table td input[type="text"] {
 	<td>$<?php echo number_format($cart->show_total(), 2); ?></td>
 </tr>
 <tr>
-<td colspan="4" style="text-align:center;">
+<td colspan="5" style="text-align:center;">
 <input type="submit" value="Update Cart">
 </td>
 </tr>
@@ -133,6 +114,9 @@ table td input[type="text"] {
     </a>
 </div>
 
+<?php
+}
+?>
 </form>
 
 <?php include 'footer.php'; ?>

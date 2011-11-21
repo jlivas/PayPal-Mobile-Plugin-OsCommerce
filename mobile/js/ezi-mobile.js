@@ -258,6 +258,7 @@ $("#search, #categories, .carticon").live("click", function(evt) {
 						Panel.html(cart);
 						MiniCart = true;
 						Panel.css("height", "auto");
+						Panel.css("display", "block");
 					},
 					complete : function() {
 						$.mobile.hidePageLoadingMsg();

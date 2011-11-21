@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-    <title>ZenCart! The Art of e-commerce</title>
+    <title>OsCommerce</title>
 
     <link rel="search" type="application/opensearchdescription+xml" href="/osd.xml" title="{if MerchantName}{MerchantName} {/if}Site Search"/>
 

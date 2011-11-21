@@ -1,3 +1,28 @@
+#cart {
+	background:#fff;
+	border-radius:10px;
+	border-collapse:collapse;
+}
+#cart th {
+	text-align:left;
+	background:#eee;
+	padding:4px;
+}
+
+#cart .update input,
+#cart .update span,
+#cart .update div,
+#cart .tdbLink {
+	display:none;
+}
+#cart table td {
+	padding:4px;
+	vertical-align:middle !important;
+}
+#cart table td input[type="text"] {
+	width:28px;
+}
+
 .ui-content .ui-listview-inset {
 	margin: 1px 0;
 }

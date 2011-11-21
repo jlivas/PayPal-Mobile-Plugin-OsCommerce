@@ -79,8 +79,6 @@ $listing_query = tep_db_query($listing_split->sql_query);
 	<a href="/prod<?php echo $listing['products_id']; ?>.htm?products_id=<?php echo $listing['products_id']; ?>"><img class="photo" style="margin-top:3px; margin-left:auto; margin-right:auto;" src="/images/<?php echo $listing['products_image']; ?>" width="100"/></a>
 </td>
 <td align="left">
-		<!--div class="unavailable">{include field="UnavailableMessageHTML"}</div-->
-		<!--{if BuyButtonID}-->	
 		<form method="post" action="/cart/index.php?action=add_product" class="productform">
 			<input type="hidden" name="products_id" value="<?php echo $listing['products_id']; ?>"/>
 			<input type="hidden" name="cart_quantity" value="1" maxlength="6" size="4">
@@ -103,7 +101,6 @@ $listing_query = tep_db_query($listing_split->sql_query);
 			<a href="prod<?php echo $listing['products_id']; ?>.htm?products_id=<?php echo $listing['products_id']; ?>" class="ui-link" style="color: #2489CE !important; text-shadow: none;">More info...</a>
 			</td></tr></table>
 		</form>
-		<!--{/if}-->
 </td>
 </tr>
 </table>		
@@ -116,14 +113,6 @@ $listing_query = tep_db_query($listing_split->sql_query);
 ?>
 
 </ul>
-
-
-<?php
-	//print_r($listing);
-	//echo "<br /><br />";
-	//print_r($subcategories);
-	//print_r($breadcrumb->_trail);
-?>
 
 <?php include 'footer.php'; ?>
 

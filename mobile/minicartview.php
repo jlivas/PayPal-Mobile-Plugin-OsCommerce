@@ -30,8 +30,6 @@ if (($_SESSION['cart']->count_contents()) == 0) {
 <?php
 for ($i=0;$i<sizeof($products);$i++) {
 ?>
-
-<!--{if not Offer}-->
 	<li style="text-align:center; padding:5px;" class="ui-li ui-li-static ui-body-c">
 		<div class="ui-btn-text">
 		<table>	
@@ -43,7 +41,6 @@ for ($i=0;$i<sizeof($products);$i++) {
 		</table>
 		</div>
 	</li>	
-<!--{/if}-->
 <?php
 }
 ?>
@@ -51,14 +48,12 @@ for ($i=0;$i<sizeof($products);$i++) {
 <li style="text-align:center; padding:5px;" class="ui-li ui-li-static ui-body-c">
 <table>
 <tfoot>
-    <?php //{if !Quote} ?>
     <tr>
         <td><div style="width: 214px; padding-top: 5px; text-align: left;">Total</div></td>
         <td align="left">
             <div style="width:60px;">$<?php echo $_SESSION['cart']->show_total();?></div>
         </td>
     </tr>
-    <?php //{/if} ?>
 </tfoot>
 </table>
 </li>
